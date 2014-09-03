@@ -1,0 +1,6 @@
+
+## Daniel Mastretta Jimenez
+
+CREATIVE CODING: SIMS 2014
+
+PARSONS THE NEW SCHOOL FOR DESIGN
