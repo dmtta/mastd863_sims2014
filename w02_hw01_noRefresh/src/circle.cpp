@@ -3,30 +3,32 @@
 
 circle::circle()
 {
+radius = ofRandom(5,15);
+speedX = ofRandom(0.05,.10);
+speedY = ofRandom(0.05,.10);
+
+pos.x = ofGetWindowWidth()*0.5;
+pos.y = ofGetWindowHeight()*0.5;
+pos.z = 0.0;
 
 }
 
-//------------------------------------------------------------------
-void circle::setup(){
-
-radius = 10;
-speedX = 0.25;
-speedY = 0.25;
-
+void circle::setInit(ofPoint _pos){
+    pos = _pos;
 
 }
 
 //------------------------------------------------------------------
 void circle::update(){
 
-    posX = posX+speedX;
-    posY = posY+speedY;
+    pos.x = pos.x+speedX;
+    pos.y = pos.y+speedY;
 
-    if (posX>=ofGetWidth() || posX<=0){
+    if (pos.x+radius/2>=ofGetWidth() || pos.x<=0+radius/2){
         speedX = speedX*-1;
     }
 
-    if (posY>=ofGetHeight() || posY<=0){
+    if (pos.y+radius/2>=ofGetHeight() || pos.y<=0+radius/2){
     speedY = speedY*-1;
     }
 }
@@ -34,9 +36,8 @@ void circle::update(){
 //------------------------------------------------------------------
 void circle::draw() {
 
-ofFill();
 ofSetColor(255,0,0);
-ofCircle(posX,posY,radius);
+ofCircle(pos, radius);
 
 }
 

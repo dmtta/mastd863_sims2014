@@ -19,5 +19,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		circle myCircle[100];
+        ofPoint center;
+        int generalAngle;
+		vector<circle> balls;
 };

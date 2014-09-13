@@ -2,28 +2,45 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+ofSetBackgroundAuto(false);
 ofBackground(ofColor::black);
 
-for (int i = 0 ; i < 100 ; i++){
-myCircle[i].setup();
 
-}
+center.x = ofGetHeight()*0.5;
+center.y = center.x;
+generalAngle = 10;
+
+ for (int i = 0; i < 100; i++) {
+
+        circle newBall;
+        newBall.setInit(ofPoint(ofGetWidth()*ofRandomf(),ofGetHeight()*ofRandomf()));
+        balls.push_back(newBall);
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-for (int i = 0 ; i < 100 ; i++){
-myCircle[i].update();
 
-}
+   for (int i = 0; i < balls.size(); i++) {
+
+        balls[i].update();
+    }
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-for (int i = 0 ; i < 100 ; i++){
-myCircle[i].draw();
 
-}
+    //  Draw them all
+
+    for (int i = 0; i < balls.size(); i++) {
+         balls[i].draw();
+   }
+
+//  for (auto &it: balls) { // Cooler way ;P
+//     it.draw();
+//  }
+
 }
 
 //--------------------------------------------------------------

@@ -15,8 +15,8 @@ class circle
         float radius;
         float speedX;
         float speedY;
-        float posX;
-        float posY;
+        ofPoint pos;
+        void setInit(ofPoint _pos);
 
     protected:
     private:
