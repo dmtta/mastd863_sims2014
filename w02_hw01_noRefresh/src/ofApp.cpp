@@ -10,7 +10,7 @@ center.x = ofGetHeight()*0.5;
 center.y = center.x;
 generalAngle = 10;
 
- for (int i = 0; i < 100; i++) {
+ for (int i = 0; i < 200; i++) {
 
         circle newBall;
         newBall.setInit(ofPoint(ofGetWidth()*ofRandomf(),ofGetHeight()*ofRandomf()));
@@ -36,7 +36,20 @@ void ofApp::draw(){
     for (int i = 0; i < balls.size(); i++) {
          balls[i].draw();
    }
+float xorig = ofGetWidth()/2;
+	float yorig = ofGetHeight()/2;
 
+	for (int i = 0; i < 100; i++){
+
+		float radius = 5 + i * 5;
+		float angle = ofGetElapsedTimef() * (1 + i / 10.0);
+		float x = xorig + radius * cos(angle);
+		float y = yorig + radius * -sin(angle);
+
+		ofSetColor(255,255,255);
+		ofCircle(x,y,1);
+
+	}
 //  for (auto &it: balls) { // Cooler way ;P
 //     it.draw();
 //  }

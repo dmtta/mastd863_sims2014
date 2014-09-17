@@ -3,7 +3,7 @@
 
 circle::circle()
 {
-radius = ofRandom(5,15);
+radius = ofGetWidth()*(ofRandom(0.001,0.005));
 speedX = ofRandom(0.05,.10);
 speedY = ofRandom(0.05,.10);
 
@@ -21,12 +21,10 @@ void circle::setInit(ofPoint _pos){
 //------------------------------------------------------------------
 void circle::update(){
 
-    pos.x = pos.x+speedX;
+    pos.x = pos.x;
     pos.y = pos.y+speedY;
 
-    if (pos.x+radius/2>=ofGetWidth() || pos.x<=0+radius/2){
-        speedX = speedX*-1;
-    }
+
 
     if (pos.y+radius/2>=ofGetHeight() || pos.y<=0+radius/2){
     speedY = speedY*-1;
