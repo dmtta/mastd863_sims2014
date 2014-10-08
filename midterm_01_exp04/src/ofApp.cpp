@@ -16,13 +16,13 @@ void ofApp::setup(){
 void ofApp::update(){
 
 
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
     ofBackground(20,20,20);
-
     cam.begin();
     light.enable();
     ofEnableLighting();
@@ -34,7 +34,7 @@ void ofApp::draw(){
 
 	float angle = ofGetElapsedTimef()*50;  // This sets up the speed of the arc
 
-	float radiusAngle = ofGetElapsedTimef()*0.5;  // This sets up the speed of the arc
+	float radiusAngle = ofGetElapsedTimef()*0.5;
 
     radius = radius + rGrowth * cos(radiusAngle)*50;
 
@@ -58,8 +58,10 @@ void ofApp::draw(){
 	}
 
 	ofSetRectMode(OF_RECTMODE_CENTER);
-	ofSetColor(200,100,50);
+	ofSetColor(100,20,250);
+	ofSetLineWidth(1);
 	ofNoFill();
+
 
 	// ------------------------------------  CONE 1   X  Y  Z-----------------------------------------------------
 
@@ -165,6 +167,9 @@ void ofApp::draw(){
     ofDisableLighting();
     light.disable();
     cam.end();
+
+    ofDrawBitmapString("FRAMERATE = " + ofToString(ofGetFrameRate()), 100, 100);
+
 
 }
 
