@@ -22,7 +22,7 @@ if (radius >= 100) {
 }
 
 if (radius <= 0) {
-    rGrowth = rGrowth *-1;
+    rGrowth = 0;
 }
 
 	zAxis = zAxis + 0.03;
