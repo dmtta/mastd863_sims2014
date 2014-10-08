@@ -18,5 +18,13 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+
+        vector < ofPoint > points; // ArrayList of ofPoints that will eventually make the trail the circle leaves.
+
+		float radius;
+		float rGrowth;
+		float zAxis;
+
+        ofEasyCam cam;
+        ofLight light;
 };
