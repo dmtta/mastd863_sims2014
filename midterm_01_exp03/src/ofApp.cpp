@@ -53,7 +53,7 @@ void ofApp::draw(){
 	temp.z = z;
 
 	points.push_back(temp);
-	if (points.size() > 5500){
+	if (points.size() > 2000){
 		points.erase(points.begin());
 	}
 
