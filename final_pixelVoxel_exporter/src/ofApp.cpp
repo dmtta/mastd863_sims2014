@@ -18,9 +18,9 @@ void ofApp::setup(){
 
     // load the images first
 
-    top.loadImage("images/grahamT.png");
-    left.loadImage("images/grahamL.png");
-    right.loadImage("images/grahamR.png");
+    top.loadImage("images/top.png");
+    left.loadImage("images/left.png");
+    right.loadImage("images/right.png");
 
     // read the width and height of each image, needed to size the loops
 
@@ -66,11 +66,11 @@ void ofApp::setup(){
 
                                             int voxSize = 10;
                                             // use offset to make voxes smaller 0 is no offset, 9 is the smallest.
-                                            int voxOffset = 3;
+                                            int voxOffset = 0;
                                             float voxDistance = 0; // 0 will make voxels stick together
                                             ofPoint voxPos = ofPoint(x*voxSize,y*voxSize,z*voxSize);
                                             Voxel thisVoxel;
-                                            thisVoxel.setInit(voxPos*(1+voxDistance),voxSize-voxOffset,lColor);
+                                            thisVoxel.setInit(voxPos*(1+voxDistance),voxSize-voxOffset,tColor);
                                             myVoxels.push_back(thisVoxel);
                                         }
                                     }
