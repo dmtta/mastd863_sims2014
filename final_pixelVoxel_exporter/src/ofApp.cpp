@@ -18,17 +18,17 @@ void ofApp::setup(){
 
     // load the images first
 
-    top.loadImage("images/top.png");
-    left.loadImage("images/left.png");
-    right.loadImage("images/right.png");
+    top.loadImage("images/mmT.png");
+    front.loadImage("images/mmF.png");
+    right.loadImage("images/mmR.png");
 
     // read the width and height of each image, needed to size the loops
 
     int wT = top.getWidth();
     int hT = top.getHeight();
 
-    int wL = left.getWidth();
-    int hL = left.getHeight();
+    int wF = front.getWidth();
+    int hF = front.getHeight();
 
     int wR = right.getWidth();
     int hR = right.getHeight();
@@ -37,7 +37,7 @@ void ofApp::setup(){
     // for each image 2 positions will be found:
 
     // The Top image knows general X and Z (further to be fed into variables xT and zT)
-    // The Left image knows general X and Y (xL and yL)
+    // The Front image knows general X and Y (xL and yL)
     // the Right image knows general Z and Y (zR and yR)
 
     // The reason I call them like this is because if the image is read from top to bottom (xT = general X from Top image, and so on...)
@@ -48,21 +48,40 @@ void ofApp::setup(){
     for (int xT = 0; xT < wT; xT++) {
         for(int zT = 0; zT < hT; zT++) {
 
-            for (int xL = 0; xL < wL; xL++) {
-                for(int yL = 0; yL < hL; yL++) {
+            for (int xF = 0; xF < wF; xF++) {
+                for(int yF = 0; yF < hF; yF++) {
 
                     for (int zR = 0; zR < wR; zR++) {
                         for(int yR = 0; yR < hR; yR++) {
 
                             ofColor tColor = top.getColor(xT,zT);
-                            ofColor lColor = left.getColor(xL,yL);
+                            ofColor fColor = front.getColor(xF,yF);
                             ofColor rColor = right.getColor(zR,yR);
 
-                            if (tColor.a > 1 && lColor.a > 1 && rColor.a > 1) {
+                            if (tColor.a > 1 && fColor.a > 1 && rColor.a > 1) {
 
-                                if(xT==xL) { int x = xT;
-                                    if(yL==yR) { int y = yL;
+                                if(xT==xF) { int x = xT;
+                                    if(yF==yR) { int y = yF;
                                         if(zT==zR) { int z = zR;
+
+                                            // Average Color of every Channel. Terrible results.----------------
+                                            int voxR = ((tColor.r + fColor.r + rColor.r)/3);
+                                            int voxG = ((tColor.g + fColor.g + rColor.g)/3);
+                                            int voxB = ((tColor.b + fColor.b + rColor.b)/3);
+                                            ofColor voxColor(voxR,voxG,voxB);
+
+                                            // Trying to make each voxel different corresponding per face.------
+                                            //if (tColor == fColor){
+                                            //    voxColor = tColor;
+                                            //}
+                                            //if (tColor == fColor){
+                                            //    voxColor = fColor;
+                                            //}
+                                            //if (fColor == rColor){
+                                            //   voxColor = rColor;
+                                            //}
+
+
 
                                             int voxSize = 10;
                                             // use offset to make voxes smaller 0 is no offset, 9 is the smallest.
@@ -70,7 +89,7 @@ void ofApp::setup(){
                                             float voxDistance = 0; // 0 will make voxels stick together
                                             ofPoint voxPos = ofPoint(x*voxSize,y*voxSize,z*voxSize);
                                             Voxel thisVoxel;
-                                            thisVoxel.setInit(voxPos*(1+voxDistance),voxSize-voxOffset,tColor);
+                                            thisVoxel.setInit(voxPos*(1+voxDistance),voxSize-voxOffset,voxColor);
                                             myVoxels.push_back(thisVoxel);
                                         }
                                     }
@@ -86,14 +105,14 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    ofBackground(5,5,30);
+    ofBackground(255,255,255);
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-ofSetColor(255,255,150);
+ofSetColor(0,0,0);
 ofDrawBitmapString("2d Pixel to 3d Voxel Matrix - with Mesh Export.", 50, 60);
 ofDrawBitmapString("Type F for fullscreen.", 50, 80);
 ofDrawBitmapString("Type S to save your mesh.", 50, 100);

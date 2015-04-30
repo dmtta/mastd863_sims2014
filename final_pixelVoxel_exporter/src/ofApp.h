@@ -28,10 +28,10 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
-    ofImage left;
+    ofImage front;
     ofImage right;
     ofImage top;
-
+    ofColor voxColor;
     ofPoint pos;
 
     ofEasyCam cam;
